@@ -12,3 +12,7 @@
     padding: 10px;
     display: block;
 }
+
+#cardContainer:focus{
+    outline: 2px solid blue;
+  }

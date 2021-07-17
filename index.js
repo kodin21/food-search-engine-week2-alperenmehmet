@@ -18,7 +18,6 @@ class foodSearchApp {
         };
         this.root = document.getElementById("js-container");
         this.initApp();
-        
     }
 
     initApp(){
@@ -49,12 +48,21 @@ class foodSearchApp {
         cardContainer.appendChild(cardTitle);
         cardContainer.appendChild(favButton);
 
-        
-        
+        favButton.addEventListener("click",(item)=>{
+            for (let i = 0; i < localStorage.length; i++) {
+                if (item == localStorage.key(i)) {
+                    window.localStorage.setItem("favFood",JSON.stringify(foodList));
+                    favButton.innerText = "Remove Favourite"
+                }else{
+                    window.localStorage.removeItem(JSON.stringify(foodList));
+                    favButton.innerText ="Add Favourite"
+                }
+            }
+        })
         return cardContainer;
     }
 
-    searchFood() {
+    searchFood () {
         const searchBar = document.getElementById('js-search-input');
         searchBar.addEventListener("keyup" , (e)=>{
             const searchString = e.target.value;
@@ -64,13 +72,7 @@ class foodSearchApp {
             this.createCard(filteredFoods);
         });
     }
-
-    openModal(){
-        favButton.addEventListener("click",(e)=>{
-            favButton.focus();
-            console.log("You've cliked to")
-        })
-    }
+    
     
 }
 
